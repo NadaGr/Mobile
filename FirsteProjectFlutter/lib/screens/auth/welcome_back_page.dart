@@ -273,7 +273,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Register? ',
+            'Registre? ',
             style: TextStyle(
               fontStyle: FontStyle.italic,
               color: Color.fromRGBO(255, 255, 255, 0.5),
