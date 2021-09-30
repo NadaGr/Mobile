@@ -1,4 +1,4 @@
-import 'package:FirsteProjectFlutter/Services/shop_item_list.dart';
+
 import 'package:FirsteProjectFlutter/app_properties.dart';
 import 'package:FirsteProjectFlutter/custom_background.dart';
 import 'package:FirsteProjectFlutter/models/panier.dart';
@@ -8,7 +8,7 @@ import 'package:FirsteProjectFlutter/screens/category/category_list_page.dart';
 import 'package:FirsteProjectFlutter/screens/notifications_page.dart';
 import 'package:FirsteProjectFlutter/screens/profile_page.dart';
 import 'package:FirsteProjectFlutter/screens/search_page.dart';
-import 'package:FirsteProjectFlutter/Services/check_out_page.dart';
+import 'package:FirsteProjectFlutter/screens/shop/check_out_page.dart';
 import 'package:FirsteProjectFlutter/screens/tracking_page.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
