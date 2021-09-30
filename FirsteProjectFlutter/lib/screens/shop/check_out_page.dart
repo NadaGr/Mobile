@@ -40,7 +40,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     var v = value.toString().split("|");
     var string = v[1];
     print("$id");
-    String myUrl = "http://192.168.1.22:8000/api/getServiceByCat/$id";
+    String myUrl = "https://beauty.procreagency.com/api/getServiceByCat/$id";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'

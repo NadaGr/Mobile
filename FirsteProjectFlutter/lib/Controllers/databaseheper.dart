@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DatabaseHelper {
-  String serverUrl = "http://192.168.1.22:8000/api";
+  String serverUrl = "http://beauty.procreagency.com/api";
   var status;
 
   var token;

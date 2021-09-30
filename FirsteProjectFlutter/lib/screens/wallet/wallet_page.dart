@@ -52,7 +52,7 @@ var pt;
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "http://192.168.1.22:8000/api/getClientwithId";
+    String myUrl = "https://beauty.procreagency.com/api/getClientwithId";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -66,7 +66,7 @@ var pt;
 
       });
     }
-    String url = "http://192.168.1.22:8000/api/getPoints/" +'${info[0]['id']}';
+    String url = "https://beauty.procreagency.com/api/getPoints/" +'${info[0]['id']}';
     http.Response res = await http.get(url, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'

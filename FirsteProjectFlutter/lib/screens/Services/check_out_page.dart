@@ -1,11 +1,13 @@
-import 'package:FirsteProjectFlutter/Services/shop_item_list.dart';
+
 import 'package:FirsteProjectFlutter/models/ServiceItem.dart';
+import 'package:FirsteProjectFlutter/screens/Services/shop_item_list.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:FirsteProjectFlutter/models/service.dart';
-import '../app_properties.dart';
+import '../../app_properties.dart';
+
 
 class CheckOutPage extends StatefulWidget {
   final ValueSetter<ServiceItem> valueSetter;
@@ -29,7 +31,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "http://192.168.1.22:8000/api/getallservice";
+    String myUrl = "https://beauty.procreagency.com/api/getallservice";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'

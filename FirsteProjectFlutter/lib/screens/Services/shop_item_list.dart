@@ -6,9 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import '../../app_properties.dart';
 //import 'package:provider/provider.dart';
 
-import '../app_properties.dart';
 
 class ShopItemList extends StatefulWidget {
   final int id,categorieid;
@@ -40,7 +41,7 @@ class _ShopItemListState extends State<ShopItemList> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "http://192.168.1.22:8000/api/getClientwithId";
+    String myUrl = "https://beauty.procreagency.com/api/getClientwithId";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
