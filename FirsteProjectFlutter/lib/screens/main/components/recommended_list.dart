@@ -71,8 +71,8 @@ class RecommendedList extends StatelessWidget {
                                 focalRadius: 0.1),
                           ),
                           child: Hero(
-                              tag: products[index].image,
-                              child: Image.asset(products[index].image))),
+                              tag: products[index].service.image,
+                              child: Image.asset(products[index].service.image))),
                     ),
                   ),
               staggeredTileBuilder: (int index) =>

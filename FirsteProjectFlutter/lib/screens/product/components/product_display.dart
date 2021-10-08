@@ -70,7 +70,7 @@ class ProductDisplay extends StatelessWidget {
                             image: new DecorationImage(
                               fit: BoxFit.fill,
                               image: NetworkImage(
-                                product.image ?? '',
+                                product.service.image ?? '',
                               ),
                             )),
                       ),

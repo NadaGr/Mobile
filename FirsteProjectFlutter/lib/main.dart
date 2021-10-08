@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:FirsteProjectFlutter/screens/auth/welcome_back_page.dart';
 import 'package:flutter/material.dart';
-void main() => runApp(MyApp());
+void main() {
+  HttpOverrides.global = new MyHttpOverrides();
+runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -20,4 +25,10 @@ class MyApp extends StatelessWidget {
   }
 }
 
- 
+ class MyHttpOverrides extends HttpOverrides{
+  @override
+  HttpClient createHttpClient(SecurityContext context){
+    return super.createHttpClient(context)
+      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+  }
+}

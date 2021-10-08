@@ -38,7 +38,7 @@ class _TrackingPageState extends State<TrackingPage> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "https://beauty.procreagency.com/api/getClientwithId";
+    String myUrl = "http://beauty.procreagency.com/api/getClientwithId";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -51,7 +51,7 @@ class _TrackingPageState extends State<TrackingPage> {
         i = data;
       });
     }
-    String url = "https://beauty.procreagency.com/api/indexR/${i[0]['id']}";
+    String url = "http://beauty.procreagency.com/api/indexR/${i[0]['id']}";
     http.Response res = await http.get(url, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -83,7 +83,7 @@ class _TrackingPageState extends State<TrackingPage> {
         panier.add(p);
         length = panier.length;
       });
-      //print(promo[i]);
+      
     }
   }
 

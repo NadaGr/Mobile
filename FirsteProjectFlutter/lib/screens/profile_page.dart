@@ -72,9 +72,9 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffF9F9F9),
-      body: 
-      Client == null ?Center(child: CircularProgressIndicator())
-      :SafeArea(
+      body:  client==null
+          ? (Center(child: CircularProgressIndicator()))
+         :SafeArea(
         top: true,
         child: SingleChildScrollView(
           child: Padding(

@@ -1,16 +1,16 @@
 
+import 'dart:io';
+
 import 'package:FirsteProjectFlutter/app_properties.dart';
 import 'package:FirsteProjectFlutter/custom_background.dart';
 import 'package:FirsteProjectFlutter/models/panier.dart';
-import 'package:FirsteProjectFlutter/models/product.dart';
 import 'package:FirsteProjectFlutter/models/promotion.dart';
+import 'package:FirsteProjectFlutter/screens/Services/check_out_page.dart';
 import 'package:FirsteProjectFlutter/screens/category/category_list_page.dart';
 import 'package:FirsteProjectFlutter/screens/notifications_page.dart';
 import 'package:FirsteProjectFlutter/screens/profile_page.dart';
 import 'package:FirsteProjectFlutter/screens/search_page.dart';
-import 'package:FirsteProjectFlutter/screens/shop/check_out_page.dart';
 import 'package:FirsteProjectFlutter/screens/tracking_page.dart';
-import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
@@ -55,7 +55,7 @@ class _MainPageState extends State<MainPage>
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "https://beauty.procreagency.com/api/getallpromo";
+    String myUrl = "http://beauty.procreagency.com/api/getallpromo";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -71,20 +71,15 @@ class _MainPageState extends State<MainPage>
     }
     for (int i=0; i<info.length; i++) {
       Promotion p = Promotion(
-          info[i][{'services.id'}],
-          info[i][{'services.nom_service'}],
-          info[i][{'services.description'}],
-          info[i][{'services.prix'}],
-          info[i][{'services.nb_points'}],
-          info[i][{'services.categorie_id'}],
-          info[i][{'services.image'}],
           info[i]['id'],
+          info[i]['services'],
           info[i]['nom'],
           info[i]['date_debut'],
           info[i]['date_fin'],
           info[i]['pourcentage'],
           info[i]['image']
           );
+          
 
       setState(() {
         promo.add(p);
@@ -184,7 +179,6 @@ class _MainPageState extends State<MainPage>
                 ),
               ),
             ),
-            //CategoryListPage(),
             CheckOutPage(),
             TrackingPage(),
             ProfilePage(),
@@ -194,3 +188,4 @@ class _MainPageState extends State<MainPage>
     );
   }
 }
+

@@ -56,7 +56,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String url = "http://192.168.1.22:8000/api/indexR/$id";
+    String url = "http://beauty.procreagency.com/api/indexR/$id";
     http.Response response = await http.get(url, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'

@@ -16,5 +16,6 @@ class Client {
     this.adresse,
     this.idUser,
     this.photo);
+    
 
 }

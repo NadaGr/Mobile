@@ -107,7 +107,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var photo =
-        "https://kozmatin.com/wp-content/uploads/2021/02/makeup_composition_overhead-732x549-thumbnail.jpg";
+        "https://t4.ftcdn.net/jpg/02/62/03/53/360_F_262035364_gGi8uJsPl9uljis8C6oxI0w6AM7MKDLq.jpg";
     return InkWell(
       onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => ProductPage(product: product))),
@@ -126,9 +126,9 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.favorite_border),
+                  icon: Icon(Icons.whatshot),
                   onPressed: () {},
-                  color: Colors.white,
+                  color: Colors.red,
                 ),
                 Column(
                   children: <Widget>[
@@ -137,7 +137,7 @@ class ProductCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.nomservice ?? '',
+                            product.service.nomService ?? '',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
@@ -169,23 +169,22 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             child: Hero(
-              tag: product.image != null ? product.image : photo,
+              tag: product.service.image != null ? product.service.image : photo,
               child: Container(
-                padding: const EdgeInsets.only(top: 30.0),
+               padding: const EdgeInsets.only(top: 10.0,left: 30.0),              
                 width: 150,
-                height: 100,
+                height: 140,
                 decoration: new BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(25),
-                        bottomLeft: Radius.circular(25),
-                        topRight: Radius.circular(25),
-                        bottomRight: Radius.circular(25)),
+                    shape: BoxShape.circle,
+                    // borderRadius: BorderRadius.only(
+                    //     topLeft: Radius.circular(25),
+                    //     bottomLeft: Radius.circular(25),
+                    //     topRight: Radius.circular(25),
+                    //     bottomRight: Radius.circular(25)),
                     image: new DecorationImage(
                       fit: BoxFit.fill,
                       image: NetworkImage(
-                        product.image != null ? product.image : photo,
-                        //product.image ?? '',
+                        product.service.image != null ? product.service.image : product.service.image ?? '',
                       ),
                     )),
               ),

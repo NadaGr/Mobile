@@ -8,8 +8,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import '../../app_properties.dart';
-//import 'package:provider/provider.dart';
-
 
 class ShopItemList extends StatefulWidget {
   final int id,categorieid;
@@ -27,13 +25,14 @@ class _ShopItemListState extends State<ShopItemList> {
   DatabaseHelper databaseHelper = new DatabaseHelper();
   List<int> Lid = [];
 
-  DateTime dateTime;
+  var dateTime;
   var info;
   @override
   void initState() {
     _affich();
     super.initState();
-  }
+    dateTime = DateTime.now()
+;  }
 
   void _affich() async {
     final prefs = await SharedPreferences.getInstance();
@@ -41,7 +40,7 @@ class _ShopItemListState extends State<ShopItemList> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "https://beauty.procreagency.com/api/getClientwithId";
+    String myUrl = "http://beauty.procreagency.com/api/getClientwithId";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -86,7 +85,7 @@ class _ShopItemListState extends State<ShopItemList> {
           ],
         ),
         body:
-        info.isEmpty ?Center(child: CircularProgressIndicator())
+        info==null ?Center(child: CircularProgressIndicator())
       : ListView(children: [
           Stack(children: [
             Container(
@@ -155,14 +154,12 @@ class _ShopItemListState extends State<ShopItemList> {
                                    ).then((date) {
                                      setState(() {
                                       dateTime = date;
+                                      print(dateTime);
                                       });
                                    }).whenComplete(() {
-                                      print(dateTime);
-                                  databaseHelper.addPanier(widget.nom, widget.description, widget.price, widget.nbpoints, widget.categorieid, widget.photo, widget.id, info[0]["id"], dateTime);
-                                     
-                                   }
-                                  );
-                             
+                                     databaseHelper.addPanier(widget.nom, widget.description, widget.price, widget.nbpoints, widget.categorieid, widget.photo, widget.id, info[0]["id"], dateTime);
+                                      }
+                                  );          
                                  
                               },
 

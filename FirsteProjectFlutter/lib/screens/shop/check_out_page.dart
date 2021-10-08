@@ -20,10 +20,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
   var id;
   var nom;
   var info;
-  var photo =
-      "https://kozmatin.com/wp-content/uploads/2021/02/makeup_composition_overhead-732x549-thumbnail.jpg";
-  //_CheckOutPageState({this.nomCategorie,this.idcat});
-  //DatabaseHelper databaseHelper = new DatabaseHelper();
   List<Service> services;
   void initState() {
     _affich();
@@ -40,7 +36,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     var v = value.toString().split("|");
     var string = v[1];
     print("$id");
-    String myUrl = "https://beauty.procreagency.com/api/getServiceByCat/$id";
+    String myUrl = "http://beauty.procreagency.com/api/getServiceByCat/$id";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -54,10 +50,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
         print(info);
       });
     }
-    // if (info.length==null) {
-      
-    // } else {
-    // }
     for (int i = 0; i < info.length; i++) {
       Service si = Service(
         info[i]['id'],
@@ -81,7 +73,9 @@ class _CheckOutPageState extends State<CheckOutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: yellow,
-      body: ListView(
+      body:  services.isEmpty
+          ? (Center(child: CircularProgressIndicator()))
+          :ListView(
         children: <Widget>[
           Padding(
             padding: EdgeInsets.only(top: 15.0, left: 10.0),

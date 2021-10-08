@@ -52,29 +52,6 @@ class _PaymentPageState extends State<PaymentPage> {
     }
   }
 
-  // updateClient(int id,int user_id, String name, String prenom, String telephone,
-  //     String email, String adresse) async {
-  //    final prefs = await SharedPreferences.getInstance();
-  //   final key = 'token';
-  //   final value = prefs.getString(key) ?? 0;
-  //   var v = value.toString().split("|");
-  //   var string = v[1];
-  //   String myUrl = "http://192.168.1.22:8000/api/updateclient";
-  //   final response = await http.put(myUrl, headers: {
-  //     'Accept': 'application/json',
-  //     'Authorization': 'Bearer $string'
-  //   }, body: {
-  //     "id": "$id",
-  //     "user_id":"$user_id",
-  //     "name": "$name",
-  //     "prenom": "$prenom",
-  //     "email": "$email",
-  //     "telephone": "$telephone",
-  //     "adresse": "$adresse"
-  //   }).then((response) {
-  //     print('Response status : ${response.statusCode}');
-  //     print('Response body : ${response.body}');
-  //   });}
 
   @override
   void initState() {
@@ -147,7 +124,10 @@ class _PaymentPageState extends State<PaymentPage> {
     return Scaffold(
       key: ScaffoldKey,
       backgroundColor: Colors.white,
-      body: LayoutBuilder(
+      body: 
+       info==null
+          ? (Center(child: CircularProgressIndicator()))
+          :LayoutBuilder(
         builder: (_, constraints) => GestureDetector(
           onPanDown: (val) {
 //            FocusScope.of(context).requestFocus(FocusNode());

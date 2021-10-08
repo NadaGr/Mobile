@@ -13,10 +13,7 @@ class CategoryListPage extends StatefulWidget {
 
 class _CategoryListPageState extends State<CategoryListPage> {
   List<Categorie> categories = [];
-  var photo =
-      "https://kozmatin.com/wp-content/uploads/2021/02/makeup_composition_overhead-732x549-thumbnail.jpg";
   var info;
-  //DatabaseHelper databaseHelper = new DatabaseHelper();
   void initState() {
     _affich();
     super.initState();
@@ -28,7 +25,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "https://beauty.procreagency.com/api/getallcat";
+    String myUrl = "http://beauty.procreagency.com/api/getallcat";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
@@ -51,7 +48,9 @@ class _CategoryListPageState extends State<CategoryListPage> {
        setState(() {
         categories.add(cat);
       });
+      //print(info[i]['id']);
     }
+    
   }
 
   @override
@@ -81,13 +80,6 @@ class _CategoryListPageState extends State<CategoryListPage> {
                 childAspectRatio: 0.8,
                 children: <Widget>[
                   for (int i = 0; i < categories.length; i++)
-                    // _buildCard(
-                    //     info != null ? info[i]['nom_categorie'] : '',
-                    //     info != null ? info[i]['id'] : '',
-                    //     info != null ? info[i]['image']:'',
-                    //     false,
-                    //     false,
-                    //     context)
                   _buildCard(categories[i],false,
                    false,
                    context)
@@ -121,17 +113,7 @@ class _CategoryListPageState extends State<CategoryListPage> {
                     ],
                     color: Colors.white),
                 child: Column(children: [
-                  Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            isFavorite
-                                ? Icon(Icons.favorite, color: Color(0xFFEF7532))
-                                : Icon(Icons.favorite_border,
-                                    color: Color(0xFFEF7532))
-                          ])),
-                  Hero(
+                 Hero(
                       tag: cat.image,
                       child: Container(
                           height: 75.0,

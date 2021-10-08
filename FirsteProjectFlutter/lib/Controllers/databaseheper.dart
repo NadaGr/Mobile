@@ -93,7 +93,7 @@ class DatabaseHelper {
       print('Response body : ${response.body}');
     });
   }
-  addPanier(String nom_service,String description, prix, nb_points,int categorie_id,String image,int service_id,int client_id, DateTime date_res) async {
+  addPanier(String nomservice,String description, prix, nbpoints,int categorieid,String image,int serviceid,int clientid, var dateres) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;
@@ -105,15 +105,15 @@ class DatabaseHelper {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
     }, body: {
-      "nom_service": "$nom_service",
+      "nom_service": "$nomservice",
        "description":"$description",
        "prix":"$prix",
-       "nb_points":"$nb_points",
-       "categorie_id":"$categorie_id",
+       "nb_points":"$nbpoints",
+       "categorie_id":"$categorieid",
        "image":"$image",
-       "service_id":"$service_id",
-       "client_id":"$client_id",
-       "date_res":"$date_res",
+       "service_id":"$serviceid",
+       "client_id":"$clientid",
+       "date_res":"$dateres",
     }).then((response) {
       print('Response status : ${response.statusCode}');
       print('Response body : ${response.body}');

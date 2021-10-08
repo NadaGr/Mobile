@@ -1,42 +1,24 @@
-import 'package:intl/intl.dart';
-import 'package:flutter/material.dart';
-
+import 'package:FirsteProjectFlutter/models/service.dart';
+import 'service.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'promotion.g.dart';
+@JsonSerializable(explicitToJson: true)
 class Promotion {
   int id;
-  String nomservice, description;
-  int prix;
-  double nbpoints;
-  int categorieid;
-  String image;
+  Service service;
   int idpromo;
   String nom, datedebut, datefin;
   int pourcentage;
   String imageP;
 
   Promotion(
-      this.id,
-      this.nomservice,
-      this.description,
-      this.prix,
-      this.nbpoints,
-      this.categorieid,
-      this.image,
-      this.idpromo,
+      {this.id,
+      this.service,
       this.nom,
       this.datedebut,
       this.datefin,
       this.pourcentage,
-      this.imageP);
+      this.imageP});
+    factory Promotion.formJson(Map <dynamic,dynamic> data)=> _$PromotionFromJson(data);
+    Map<dynamic,dynamic> toJson()=>_$PromotionToJson(this);
 }
-// info[i]['id'],
-// info[i]['nom_service'],
-// info[i]['description'],
-// info[i]['prix'],
-// info[i]['nb_points'],
-// info[i]['categorie_id'],
-// info[i]['image'],
-// info[i]['promotions']['id'],
-//info[i]['promotions']['nom'], 
-//info[i]['promotions']['date_debut'],
-// info[i]['promotions']['date_fin'],
-//        info[i]['promotions']['pourcentage'],info[i]['promotions']['image']

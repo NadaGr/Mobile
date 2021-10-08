@@ -31,7 +31,7 @@ class _CheckOutPageState extends State<CheckOutPage> {
     final value = prefs.getString(key) ?? 0;
     var v = value.toString().split("|");
     var string = v[1];
-    String myUrl = "https://beauty.procreagency.com/api/getallservice";
+    String myUrl = "http://beauty.procreagency.com/api/getallservice";
     http.Response response = await http.get(myUrl, headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
