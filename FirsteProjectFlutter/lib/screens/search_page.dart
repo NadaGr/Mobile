@@ -1,7 +1,6 @@
 import 'package:FirsteProjectFlutter/app_properties.dart';
 import 'package:FirsteProjectFlutter/models/product.dart';
 import 'package:FirsteProjectFlutter/models/promotion.dart';
-import 'package:FirsteProjectFlutter/screens/product/view_product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rubber/rubber.dart';
@@ -149,20 +148,7 @@ class _SearchPageState extends State<SearchPage>
                       ))),
             ),
           ),
-          Flexible(
-            child: Container(
-              color: Colors.orange[50],
-              child: ListView.builder(
-                  itemCount: searchResults.length,
-                  itemBuilder: (_, index) => Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.0),
-                      child: ListTile(
-                        onTap: ()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>ViewProductPage(product: searchResults[index],))),
-                        title: Text(searchResults[index].nom),
-                      ))),
-            ),
-          )
-        ],
+          ],
       ),
     );
   }

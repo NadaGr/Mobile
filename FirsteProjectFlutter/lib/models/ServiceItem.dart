@@ -1,5 +1,3 @@
-import 'package:flutter/foundation.dart';
-
 class ServiceItem {
   final id;
   final photo;

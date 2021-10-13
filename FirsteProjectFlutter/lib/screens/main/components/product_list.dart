@@ -1,5 +1,4 @@
 import 'package:FirsteProjectFlutter/app_properties.dart';
-import 'package:FirsteProjectFlutter/models/product.dart';
 import 'package:FirsteProjectFlutter/models/promotion.dart';
 import 'package:FirsteProjectFlutter/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
@@ -106,8 +105,6 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var photo =
-        "https://t4.ftcdn.net/jpg/02/62/03/53/360_F_262035364_gGi8uJsPl9uljis8C6oxI0w6AM7MKDLq.jpg";
     return InkWell(
       onTap: () => Navigator.of(context).push(
           MaterialPageRoute(builder: (_) => ProductPage(product: product))),
@@ -137,7 +134,7 @@ class ProductCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.service.nomService ?? '',
+                            product.nomService ?? '',
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
@@ -169,7 +166,7 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             child: Hero(
-              tag: product.service.image != null ? product.service.image : photo,
+              tag: product.image != null ? product.image : "null",
               child: Container(
                padding: const EdgeInsets.only(top: 10.0,left: 30.0),              
                 width: 150,
@@ -184,7 +181,7 @@ class ProductCard extends StatelessWidget {
                     image: new DecorationImage(
                       fit: BoxFit.fill,
                       image: NetworkImage(
-                        product.service.image != null ? product.service.image : product.service.image ?? '',
+                        product.image != null ? product.image : product.image ?? '',
                       ),
                     )),
               ),

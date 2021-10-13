@@ -8,7 +8,7 @@ class Panier{
   String image;
   int serviceId; 
   int clientId;
-  var dateTime;
+  DateTime dateTime;
   Panier(
   this.id, 
   this.nomService, 

@@ -2,7 +2,6 @@ import 'package:FirsteProjectFlutter/app_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:FirsteProjectFlutter/Controllers/databaseheper.dart';
 import 'package:FirsteProjectFlutter/screens/main/main_page.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 class RegisterPage extends StatefulWidget {
   @override

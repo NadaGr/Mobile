@@ -93,7 +93,7 @@ class DatabaseHelper {
       print('Response body : ${response.body}');
     });
   }
-  addPanier(String nomservice,String description, prix, nbpoints,int categorieid,String image,int serviceid,int clientid, var dateres) async {
+  addPanier(String nomservice,String description, prix, nbpoints,int categorieid,String image,int serviceid,int clientid, DateTime dateres) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;

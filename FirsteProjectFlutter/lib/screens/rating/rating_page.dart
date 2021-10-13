@@ -60,12 +60,15 @@ class _RatingPageState extends State<RatingPage> {
     }
     print(reservation);
     for (int i = 0; i < reservation.length; i++) {
+      for(int j = 0; j <=i; j++)
       resv = Reservation(
           reservation[i]['id'], 
           reservation[i]['etat'], 
-          reservation[i]['date'],
-          reservation[i]['client_id'],
-          reservation[i]['service_id'],
+          DateTime.parse(reservation[i]['date']),
+          reservation[i]['service']['nom_service'],
+          reservation[i]['service']['description'],
+          reservation[i]['service']['prix'],
+          reservation[i]['service']['image'],
           );
       setState(() {
         reservations.add(resv);
@@ -126,9 +129,9 @@ class _RatingPageState extends State<RatingPage> {
                                   Padding(
                                     padding: const EdgeInsets.only(right: 16.0),
                                     child: CircleAvatar(
-                                      maxRadius: 14,
+                                      maxRadius: 50,
                                       backgroundImage:
-                                          AssetImage('assets/background.jpg'),
+                                          NetworkImage(reservations[i].image),
                                     ),
                                   ),
                                   Expanded(
@@ -142,7 +145,7 @@ class _RatingPageState extends State<RatingPage> {
                                               MainAxisAlignment.spaceBetween,
                                           children: <Widget>[
                                             Text(
-                                              '${reservations[i].id}',
+                                              '${reservations[i].nomService}',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.bold),
                                             )

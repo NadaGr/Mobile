@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class RatingDialog extends StatelessWidget {
+ 
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;

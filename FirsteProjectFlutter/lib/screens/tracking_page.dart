@@ -2,6 +2,7 @@ import 'package:FirsteProjectFlutter/Controllers/databaseheper.dart';
 import 'package:FirsteProjectFlutter/app_properties.dart';
 import 'package:FirsteProjectFlutter/models/panier.dart';
 import 'package:FirsteProjectFlutter/models/reservation.dart';
+import 'package:FirsteProjectFlutter/screens/rating/rating_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -76,18 +77,17 @@ class _TrackingPageState extends State<TrackingPage> {
         info[i]['image'],
         info[i]['service_id'],
         info[i]['client_id'],
-        info[i]['date_res'],
+        DateTime.parse(info[i]['date_res']),
       );
 
       setState(() {
         panier.add(p);
         length = panier.length;
       });
-      
     }
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     // final cart = Provider.of<Cart>(context);
     return Scaffold(
@@ -181,6 +181,8 @@ class _TrackingPageState extends State<TrackingPage> {
                                                                     .serviceId,
                                                                 panier[i]
                                                                     .dateTime);
+                                                                    _showDialog(
+                                                            "Vous avez Reservé cette service");
                                                       }),
                                                 ],
                                               ),
@@ -202,6 +204,8 @@ class _TrackingPageState extends State<TrackingPage> {
                                                                     .clientId,
                                                                 panier[i]
                                                                     .serviceId);
+                                                        _showDialog(
+                                                            "Vous avez annulé cette réservation");
                                                       })
                                                 ],
                                               ),
@@ -217,6 +221,18 @@ class _TrackingPageState extends State<TrackingPage> {
               ],
             ),
     );
+  }
+
+  void _showDialog(String text) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+         return Dialog(
+            shape: BeveledRectangleBorder(
+                borderRadius: BorderRadius.all(Radius.circular(10))),
+            child: RatingDialog(),
+          );
+        });
   }
 }
 

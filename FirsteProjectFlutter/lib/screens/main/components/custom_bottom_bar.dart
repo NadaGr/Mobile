@@ -81,7 +81,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
         info[i]['image'],
         info[i]['service_id'],
         info[i]['client_id'],
-        info[i]['date_res'],
+        DateTime.parse(info[i]['date_res']),
       );
 
       setState(() {

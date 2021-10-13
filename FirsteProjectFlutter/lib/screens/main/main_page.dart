@@ -36,12 +36,14 @@ class _MainPageState extends State<MainPage>
   SwiperController swiperController;
   TabController tabController;
   TabController bottomTabController;
-  List<Promotion> promo = [];
+  List<Promotion> promo ;
   var info;
+  Promotion p;
   List<Panier> panier;
   @override
   void initState() {
     _affich();
+    promo = [];
     panier = [];
     super.initState();
     tabController = TabController(length: 5, vsync: this);
@@ -60,31 +62,32 @@ class _MainPageState extends State<MainPage>
       'Accept': 'application/json',
       'Authorization': 'Bearer $string'
     });
-    // print(response.body);
     var data = json.decode(response.body);
-    //print(data);
     if (data != null) {
       setState(() {
         info = data;
       });
       print(info);
     }
-    for (int i=0; i<info.length; i++) {
-      Promotion p = Promotion(
+    for (int i=0; i < info.length; i++) {
+      for(int j=0; j <= i; j++)
+       p = Promotion(
           info[i]['id'],
-          info[i]['services'],
           info[i]['nom'],
           info[i]['date_debut'],
           info[i]['date_fin'],
           info[i]['pourcentage'],
-          info[i]['image']
-          );
-          
+          info[i]['image'],
+          info[i]['services']['nom_service'],
+          info[i]['services']['description'],
+          info[i]['services']['prix'],
+          info[i]['services']['nb_points'],
+          info[i]['services']['image']  
 
+          );
       setState(() {
         promo.add(p);
       });
-      print(promo[i]);
     }
     
   }

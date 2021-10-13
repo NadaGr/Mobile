@@ -10,12 +10,18 @@ import 'dart:convert';
 import '../../app_properties.dart';
 
 class ShopItemList extends StatefulWidget {
-  final int id,categorieid;
-  final price,nbpoints;
+  final int id, categorieid;
+  final price, nbpoints;
   final photo;
   final String nom, description;
-//widget.nom_service, widget.description, widget.prix, widget.nb_points, widget.categorie_id, widget.image, widget.service_id,
-  ShopItemList({this.id, this.nom, this.description, this.price, this.photo,this.categorieid, this.nbpoints});
+  ShopItemList(
+      {this.id,
+      this.nom,
+      this.description,
+      this.price,
+      this.photo,
+      this.categorieid,
+      this.nbpoints});
 
   @override
   _ShopItemListState createState() => _ShopItemListState();
@@ -31,8 +37,8 @@ class _ShopItemListState extends State<ShopItemList> {
   void initState() {
     _affich();
     super.initState();
-    dateTime = DateTime.now()
-;  }
+    dateTime = DateTime.now();
+  }
 
   void _affich() async {
     final prefs = await SharedPreferences.getInstance();
@@ -84,126 +90,133 @@ class _ShopItemListState extends State<ShopItemList> {
             )
           ],
         ),
-        body:
-        info==null ?Center(child: CircularProgressIndicator())
-      : ListView(children: [
-          Stack(children: [
-            Container(
-                height: MediaQuery.of(context).size.height - 82.0,
-                width: MediaQuery.of(context).size.width,
-                color: Colors.transparent),
-            Positioned(
-                top: 75.0,
-                child: Container(
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(45.0),
-                          topRight: Radius.circular(45.0),
-                        ),
-                        color: Colors.white),
-                    height: MediaQuery.of(context).size.height - 100.0,
-                    width: MediaQuery.of(context).size.width)),
-            Positioned(
-                top: 30.0,
-                left: (MediaQuery.of(context).size.width / 2) - 100.0,
-                child: Hero(
-                    tag: widget.photo,
-                    child: Container(
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: NetworkImage(widget.photo),
-                                fit: BoxFit.cover)),
-                        height: 200.0,
-                        width: 200.0))),
-            Positioned(
-                top: 250.0,
-                left: 25.0,
-                right: 25.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(widget.nom,
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontSize: 22.0,
-                            fontWeight: FontWeight.bold)),
-                    SizedBox(height: 20.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Text('${widget.price}',
-                            style: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 20.0,
-                                color: Colors.grey)),
-                        Container(height: 25.0, color: Colors.grey, width: 1.0),
-                        Container(
-                            width: 45.0,
-                            height: 45.0,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(17.0),
-                                color: Colors.white),
-                            child: InkWell(
-                              onTap: () {
-                                showDatePicker
-                                (
-                                  context: context,
-                                 initialDate: DateTime.now(),
-                                  firstDate: DateTime(2001),
-                                   lastDate: DateTime(2222)
-                                   ).then((date) {
-                                     setState(() {
-                                      dateTime = date;
-                                      print(dateTime);
-                                      });
-                                   }).whenComplete(() {
-                                     databaseHelper.addPanier(widget.nom, widget.description, widget.price, widget.nbpoints, widget.categorieid, widget.photo, widget.id, info[0]["id"], dateTime);
-                                      }
-                                  );          
-                                 
-                              },
-
-                              child: Container(
-                                height: 45.0,
-                                width: 45.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(7.0),
-                                    //color: yellow
-                                    ),
-                                child: Center(
-                                  child: Icon(
-                                    Icons.add_shopping_cart_sharp,
-                                    //color: Colors.white,
-                                    size: 35.0,
-                                  ),
-                                ),
-                              ),
-                            ))
-                      ],
-                    ),
-                    SizedBox(height: 20.0),
-                    Padding(
-                      padding: EdgeInsets.only(bottom: 5.0),
+        body: info == null
+            ? Center(child: CircularProgressIndicator())
+            : ListView(children: [
+                Stack(children: [
+                  Container(
+                      height: MediaQuery.of(context).size.height - 82.0,
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.transparent),
+                  Positioned(
+                      top: 75.0,
                       child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(10.0),
-                                topRight: Radius.circular(10.0),
-                                bottomLeft: Radius.circular(10.0),
-                                bottomRight: Radius.circular(10.0)),
-                            color: yellow),
-                        height: 100.0,
-                        child: Center(
-                          child: Text(widget.description,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(45.0),
+                                topRight: Radius.circular(45.0),
+                              ),
+                              color: Colors.white),
+                          height: MediaQuery.of(context).size.height - 100.0,
+                          width: MediaQuery.of(context).size.width)),
+                  Positioned(
+                      top: 30.0,
+                      left: (MediaQuery.of(context).size.width / 2) - 100.0,
+                      child: Hero(
+                          tag: widget.photo,
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.photo),
+                                      fit: BoxFit.cover)),
+                              height: 200.0,
+                              width: 200.0))),
+                  Positioned(
+                      top: 250.0,
+                      left: 25.0,
+                      right: 25.0,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Text(widget.nom,
                               style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat')),
-                        ),
-                      ),
-                    )
-                  ],
-                ))
-          ])
-        ]));
+                                  fontFamily: 'Montserrat',
+                                  fontSize: 22.0,
+                                  fontWeight: FontWeight.bold)),
+                          SizedBox(height: 20.0),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text('${widget.price}',
+                                  style: TextStyle(
+                                      fontFamily: 'Montserrat',
+                                      fontSize: 20.0,
+                                      color: Colors.grey)),
+                              Container(
+                                  height: 25.0, color: Colors.grey, width: 1.0),
+                              Container(
+                                  width: 45.0,
+                                  height: 45.0,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(17.0),
+                                      color: Colors.white),
+                                  child: InkWell(
+                                    onTap: () {
+                                      showDatePicker(
+                                              context: context,
+                                              initialDate: DateTime.now(),
+                                              firstDate: DateTime(2001),
+                                              lastDate: DateTime(2222))
+                                          .then((date) {
+                                        setState(() {
+                                          dateTime = date;
+                                          print(dateTime);
+                                        });
+                                      }).whenComplete(() {
+                                        databaseHelper.addPanier(
+                                            widget.nom,
+                                            widget.description,
+                                            widget.price,
+                                            widget.nbpoints,
+                                            widget.categorieid,
+                                            widget.photo,
+                                            widget.id,
+                                            info[0]["id"],
+                                            dateTime);
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 45.0,
+                                      width: 45.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0),
+                                        //color: yellow
+                                      ),
+                                      child: Center(
+                                        child: Icon(
+                                          Icons.add_shopping_cart_sharp,
+                                          //color: Colors.white,
+                                          size: 35.0,
+                                        ),
+                                      ),
+                                    ),
+                                  ))
+                            ],
+                          ),
+                          SizedBox(height: 20.0),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 5.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10.0),
+                                      topRight: Radius.circular(10.0),
+                                      bottomLeft: Radius.circular(10.0),
+                                      bottomRight: Radius.circular(10.0)),
+                                  color: yellow),
+                              height: 100.0,
+                              child: Center(
+                                child: Text(widget.description,
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Montserrat')),
+                              ),
+                            ),
+                          )
+                        ],
+                      ))
+                ])
+              ]));
   }
 }

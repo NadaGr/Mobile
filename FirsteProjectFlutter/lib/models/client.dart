@@ -1,5 +1,3 @@
-import 'package:FirsteProjectFlutter/models/user.dart';
-
 class Client {
   int id;
   String nomUser;
